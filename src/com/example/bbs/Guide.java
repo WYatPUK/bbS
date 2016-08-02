@@ -29,7 +29,7 @@ public class Guide extends Activity {
 	}
 	
 	private void Go_Next() {
-		Intent intent = new Intent(this, DeviceScanActivity.class);
+		Intent intent = new Intent(this, Main_bbs.class);
 		startActivity(intent);
 		finish();
 	}

@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class test_Scan extends Activity {
 
 	public static final int SCAN_CODE = 1;
 
@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
 		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+				Intent intent = new Intent(test_Scan.this, CaptureActivity.class);
 				startActivityForResult(intent, SCAN_CODE);
 			}
 		});

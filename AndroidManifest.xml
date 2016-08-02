@@ -66,7 +66,7 @@
         <activity android:name=".AmoComActivity" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".DetailActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".test_Scan" />
         <activity
             android:name="com.google.zxing.client.android.CaptureActivity"
             android:clearTaskOnLaunch="true"
@@ -232,6 +232,14 @@
             android:launchMode="singleInstance"
             android:multiprocess="false"
             android:noHistory="false" >
+        </activity>
+        <activity
+            android:name=".Main_bbs"
+            android:label="@string/title_activity_main_bbs" >
+        </activity>
+        <activity
+            android:name=".Show"
+            android:label="@string/title_activity_show" >
         </activity>
     </application>
 

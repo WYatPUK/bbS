@@ -169,5 +169,9 @@
     <string name="GetInfo_Waiting">Waiting for Get Information</string>
     <string name="Excute_Waiting">Wating for Excuting</string>
     <string name="ClearAll">CA</string>
+    <string name="title_activity_main_bbs">Main_bbs</string>
+    <string name="Scan_and_Look">扫描查看</string>
+    <string name="Link_Devices">连接设备</string>
+    <string name="title_activity_show">Show</string>
 
 </resources>

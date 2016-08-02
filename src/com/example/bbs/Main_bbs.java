@@ -15,6 +15,7 @@ public class Main_bbs extends Activity implements View.OnClickListener {
 		setContentView(R.layout.activity_main_bbs);
 		findViewById(R.id.button_Scan).setOnClickListener(this);
 		findViewById(R.id.button_Link).setOnClickListener(this);
+		findViewById(R.id.button_Decode).setOnClickListener(this);
 	}
 
 	@Override
@@ -29,7 +30,12 @@ public class Main_bbs extends Activity implements View.OnClickListener {
 			Intent intent = new Intent(this, DeviceScanActivity.class);
 			startActivity(intent);
 			break;
+		case R.id.button_Decode:
+			Intent intent3 = new Intent(this, Decode.class);
+			startActivity(intent3);
+			break;
 		}
+		
 	}
 	
 	@Override

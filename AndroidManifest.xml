@@ -241,6 +241,14 @@
             android:name=".Show"
             android:label="@string/title_activity_show" >
         </activity>
+        <activity
+            android:name=".Decode"
+            android:label="@string/title_activity_decode" >
+        </activity>
+        <activity
+            android:name=".ImageUtils"
+            android:label="@string/title_activity_image_utils" >
+        </activity>
     </application>
 
 </manifest>

@@ -173,5 +173,9 @@
     <string name="Scan_and_Look">扫描查看</string>
     <string name="Link_Devices">连接设备</string>
     <string name="title_activity_show">Show</string>
+    <string name="title_activity_decode">Decode</string>
+    <string name="decode_open">扫描图片中的二维码</string>
+    <string name="Decode">图片解码</string>
+    <string name="title_activity_image_utils">ImageUtils</string>
 
 </resources>

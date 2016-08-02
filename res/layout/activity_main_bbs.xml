@@ -9,14 +9,22 @@
     tools:context="com.example.bbs.Main_bbs" >
 
     <LinearLayout 
-        android:orientation="horizontal"
-        android:gravity="bottom"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
+        
+        <Button
+            android:id="@+id/button_Decode"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/Decode"
+            android:textSize="30sp"/>
 
         <Button
             android:id="@+id/button_Scan"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
@@ -25,7 +33,7 @@
         
         <Button
             android:id="@+id/button_Link"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"

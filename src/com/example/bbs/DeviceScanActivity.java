@@ -74,9 +74,9 @@ public class DeviceScanActivity extends ListActivity {
 	static BluetoothGattCharacteristic gattCharacteristic_0xffa6 = null;
 
 	private LeDeviceListAdapter mLeDeviceListAdapter = null;
-	// 鎼滅储BLE缁堢
+	// 搜索BLE终端
 	private BluetoothAdapter mBluetoothAdapter;
-	// 璇诲啓BLE缁堢
+	// 读写BLE终端
 	static private BluetoothLeClass mBLE;
 	public String bluetoothAddress;
 	static private byte writeValue_char1 = 0;
@@ -98,7 +98,7 @@ public class DeviceScanActivity extends ListActivity {
 		// setContentView(R.layout.listitem_device);
 		// getActionBar().setTitle(R.string.title_devices);
 
-		getActionBar().setTitle("姝ｅ湪鎵弿璁惧涓�...");
+		getActionBar().setTitle("正在扫描设备中...");
 		// findViewById(R.id.button_new_encoder).setOnClickListener(this);
 
 		// Use this check to determine whether BLE is supported on the device.
@@ -129,7 +129,7 @@ public class DeviceScanActivity extends ListActivity {
 			Log.i(TAG, "mBluetoothAdapter = " + mBluetoothAdapter);
 		}
 
-		// 锟�?锟斤拷钃濈墮
+		// �?��蓝牙
 		mBluetoothAdapter.enable();
 		Log.i(TAG, "mBluetoothAdapter.enable");
 
@@ -140,10 +140,10 @@ public class DeviceScanActivity extends ListActivity {
 		}
 		Log.i(TAG, "mBLE = e" + mBLE);
 
-		// 鍙戠幇BLE缁堢鐨凷ervice鏃跺洖锟�?
+		// 发现BLE终端的Service时回�?
 		mBLE.setOnServiceDiscoverListener(mOnServiceDiscover);
 
-		// 鏀跺埌BLE缁堢鏁版嵁浜や簰鐨勪簨锟�?
+		// 收到BLE终端数据交互的事�?
 		mBLE.setOnDataAvailableListener(mOnDataAvailable);
 
 		mHandler = new Handler() {
@@ -154,24 +154,24 @@ public class DeviceScanActivity extends ListActivity {
 				if (msg.what == REFRESH) {
 					count++;
 					if (count == 0)
-						getActionBar().setTitle("姝ｅ湪鎷煎懡鎵弿璁惧涓�.");
+						getActionBar().setTitle("正在拼命扫描设备中.");
 					else if (count == 1)
-						getActionBar().setTitle("姝ｅ湪鎷煎懡鎵弿璁惧涓�..");
+						getActionBar().setTitle("正在拼命扫描设备中..");
 					else if (count == 2)
-						getActionBar().setTitle("姝ｅ湪鎷煎懡鎵弿璁惧涓�...");
+						getActionBar().setTitle("正在拼命扫描设备中...");
 					else if (count == 3)
-						getActionBar().setTitle("姝ｅ湪鎷煎懡鎵弿璁惧涓�....");
+						getActionBar().setTitle("正在拼命扫描设备中....");
 					else if (count == 4)
-						getActionBar().setTitle("姝ｅ湪鎷煎懡鎵弿璁惧涓�.....");
+						getActionBar().setTitle("正在拼命扫描设备中.....");
 					else if (count == 5)
-						getActionBar().setTitle("姝ｅ湪鎷煎懡鎵弿璁惧涓�......");
+						getActionBar().setTitle("正在拼命扫描设备中......");
 					else if (count == 6)
-						getActionBar().setTitle("姝ｅ湪鎷煎懡鎵弿璁惧涓�.......");
+						getActionBar().setTitle("正在拼命扫描设备中.......");
 					else {
 						count = 0;
-						getActionBar().setTitle("姝ｅ湪鎷煎懡鎵弿璁惧涓�........");
+						getActionBar().setTitle("正在拼命扫描设备中........");
 
-						// 璇诲彇uuid
+						// 读取uuid
 						// if(mBLE != null)
 						// {
 						// if(mBLE.mBluetoothGatt != null)
@@ -324,7 +324,7 @@ public class DeviceScanActivity extends ListActivity {
 
 		Log.i(TAG, "connect bRet = " + bRet);
 
-		Toast toast = Toast.makeText(getApplicationContext(), "姝ｅ湪杩炴帴璁惧骞惰幏鍙栨湇鍔′腑",
+		Toast toast = Toast.makeText(getApplicationContext(), "正在连接设备并获取服务中",
 				1500);
 		toast.setGravity(Gravity.CENTER, 0, 0);
 		toast.show();
@@ -352,7 +352,7 @@ public class DeviceScanActivity extends ListActivity {
 	}
 
 	/**
-	 * 鎼滅储鍒癇LE缁堢鏈嶅姟鐨勪簨锟�?
+	 * 搜索到BLE终端服务的事�?
 	 */
 	private BluetoothLeClass.OnServiceDiscoverListener mOnServiceDiscover = new OnServiceDiscoverListener() {
 
@@ -364,16 +364,16 @@ public class DeviceScanActivity extends ListActivity {
 	};
 
 	/**
-	 * 鏀跺埌BLE缁堢鏁版嵁浜や簰鐨勪簨锟�?
+	 * 收到BLE终端数据交互的事�?
 	 */
 	private BluetoothLeClass.OnDataAvailableListener mOnDataAvailable = new OnDataAvailableListener() {
 		/**
-		 * BLE缁堢鏁版嵁琚鐨勪簨锟�?
+		 * BLE终端数据被读的事�?
 		 */
 		@Override
 		public void onCharacteristicRead(BluetoothGatt gatt,
 				BluetoothGattCharacteristic characteristic, int status) {
-			// 鎵ц mBLE.readCharacteristic(gattCharacteristic); 鍚庡氨浼氭敹鍒版暟锟�? if
+			// 执行 mBLE.readCharacteristic(gattCharacteristic); 后就会收到数�? if
 			// (status == BluetoothGatt.GATT_SUCCESS)
 			Log.e(TAG,
 					"onCharRead " + gatt.getDevice().getName() + " read "
@@ -386,7 +386,7 @@ public class DeviceScanActivity extends ListActivity {
 		}
 
 		/**
-		 * 鏀跺埌BLE缁堢鍐欏叆鏁版嵁鍥炶皟
+		 * 收到BLE终端写入数据回调
 		 */
 		@Override
 		public void onCharacteristicWrite(BluetoothGatt gatt,
@@ -418,7 +418,7 @@ public class DeviceScanActivity extends ListActivity {
 					mLeDeviceListAdapter.addDevice(ibeacon);
 					mLeDeviceListAdapter.notifyDataSetChanged();
 
-					// 鍙戠幇灏忕背3蹇呴』鍔犱互涓嬬殑杩�3涓鍙ワ紝鍚﹀垯涓嶆洿鏂版暟鎹紝鑰屼笁鏄熺殑鏈哄瓙s3鍒欐病鏈夎繖涓棶棰�
+					// 发现小米3必须加以下的这3个语句，否则不更新数据，而三星的机子s3则没有这个问题
 					if (mScanning == true) {
 						mBluetoothAdapter.stopLeScan(mLeScanCallback);
 						mBluetoothAdapter.startLeScan(mLeScanCallback);
@@ -439,14 +439,14 @@ public class DeviceScanActivity extends ListActivity {
 		BluetoothGattCharacteristic Characteristic_cur = null;
 
 		for (BluetoothGattService gattService : gattServices) {
-			// -----Service鐨勫瓧娈典俊锟�?----//
+			// -----Service的字段信�?----//
 			int type = gattService.getType();
 			Log.e(TAG, "-->service type:" + Utils.getServiceType(type));
 			Log.e(TAG, "-->includedServices size:"
 					+ gattService.getIncludedServices().size());
 			Log.e(TAG, "-->service uuid:" + gattService.getUuid());
 
-			// -----Characteristics鐨勫瓧娈典俊锟�?----//
+			// -----Characteristics的字段信�?----//
 			List<BluetoothGattCharacteristic> gattCharacteristics = gattService
 					.getCharacteristics();
 			for (final BluetoothGattCharacteristic gattCharacteristic : gattCharacteristics) {
@@ -472,7 +472,7 @@ public class DeviceScanActivity extends ListActivity {
 				}
 
 				if (gattCharacteristic.getUuid().toString().equals(UUID_CHAR6)) {
-					// 鎶奵har1 淇濆瓨璧锋潵锟�?浠ユ柟渚垮悗闈㈣鍐欐暟鎹椂浣跨敤
+					// 把char1 保存起来�?以方便后面读写数据时使用
 					gattCharacteristic_char6 = gattCharacteristic;
 					Characteristic_cur = gattCharacteristic;
 					mBLE.setCharacteristicNotification(gattCharacteristic, true);
@@ -481,30 +481,30 @@ public class DeviceScanActivity extends ListActivity {
 
 				if (gattCharacteristic.getUuid().toString()
 						.equals(UUID_HERATRATE)) {
-					// 鎶奾eartrate 淇濆瓨璧锋潵锟�?浠ユ柟渚垮悗闈㈣鍐欐暟鎹椂浣跨敤
+					// 把heartrate 保存起来�?以方便后面读写数据时使用
 					gattCharacteristic_heartrate = gattCharacteristic;
 					Characteristic_cur = gattCharacteristic;
-					// 鎺ュ彈Characteristic琚啓鐨勶拷?锟�?鏀跺埌钃濈墮妯″潡鐨勬暟鎹悗浼氳Е鍙憁OnDataAvailable.onCharacteristicWrite()
+					// 接受Characteristic被写的�?�?收到蓝牙模块的数据后会触发mOnDataAvailable.onCharacteristicWrite()
 					mBLE.setCharacteristicNotification(gattCharacteristic, true);
 					Log.i(TAG, "+++++++++UUID_HERATRATE");
 				}
 
 				if (gattCharacteristic.getUuid().toString()
 						.equals(UUID_KEY_DATA)) {
-					// 鎶奾eartrate 淇濆瓨璧锋潵锟�?浠ユ柟渚垮悗闈㈣鍐欐暟鎹椂浣跨敤
+					// 把heartrate 保存起来�?以方便后面读写数据时使用
 					gattCharacteristic_keydata = gattCharacteristic;
 					Characteristic_cur = gattCharacteristic;
-					// 鎺ュ彈Characteristic琚啓鐨勶拷?锟�?鏀跺埌钃濈墮妯″潡鐨勬暟鎹悗浼氳Е鍙憁OnDataAvailable.onCharacteristicWrite()
+					// 接受Characteristic被写的�?�?收到蓝牙模块的数据后会触发mOnDataAvailable.onCharacteristicWrite()
 					mBLE.setCharacteristicNotification(gattCharacteristic, true);
 					Log.i(TAG, "+++++++++UUID_KEY_DATA");
 				}
 
 				if (gattCharacteristic.getUuid().toString()
 						.equals(UUID_TEMPERATURE)) {
-					// 鎶奾eartrate 淇濆瓨璧锋潵锟�?浠ユ柟渚垮悗闈㈣鍐欐暟鎹椂浣跨敤
+					// 把heartrate 保存起来�?以方便后面读写数据时使用
 					gattCharacteristic_temperature = gattCharacteristic;
 					Characteristic_cur = gattCharacteristic;
-					// 鎺ュ彈Characteristic琚啓鐨勶拷?锟�?鏀跺埌钃濈墮妯″潡鐨勬暟鎹悗浼氳Е鍙憁OnDataAvailable.onCharacteristicWrite()
+					// 接受Characteristic被写的�?�?收到蓝牙模块的数据后会触发mOnDataAvailable.onCharacteristicWrite()
 					mBLE.setCharacteristicNotification(gattCharacteristic, true);
 					Log.i(TAG, "+++++++++UUID_TEMPERATURE");
 				}
@@ -512,13 +512,13 @@ public class DeviceScanActivity extends ListActivity {
 				
 				if (gattCharacteristic.getUuid().toString()
 						.equals(UUID_0XFFA6)) {
-					// 鎶奾eartrate 淇濆瓨璧锋潵锟�?浠ユ柟渚垮悗闈㈣鍐欐暟鎹椂浣跨敤
+					// 把heartrate 保存起来�?以方便后面读写数据时使用
 					gattCharacteristic_0xffa6 = gattCharacteristic;
 					Characteristic_cur = gattCharacteristic;
 					Log.i(TAG, "+++++++++UUID_0XFFA6");
 				}
 				
-				// -----Descriptors鐨勫瓧娈典俊锟�?----//
+				// -----Descriptors的字段信�?----//
 				List<BluetoothGattDescriptor> gattDescriptors = gattCharacteristic
 						.getDescriptors();
 				for (BluetoothGattDescriptor gattDescriptor : gattDescriptors) {

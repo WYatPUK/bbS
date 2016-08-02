@@ -51,13 +51,17 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".DeviceScanActivity"
+            android:name=".Guide"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".DeviceScanActivity"
+            android:label="@string/app_name" >
         </activity>
         <activity android:name=".AmoComActivity" />
         <activity android:name=".AboutActivity" />
@@ -222,7 +226,13 @@
             android:name=".Excute"
             android:label="@string/title_activity_excute" >
         </activity>
-        <activity android:name="Get_Man_Answer" android:launchMode="singleInstance" android:noHistory="false" android:finishOnTaskLaunch="false" android:multiprocess="false"></activity>
+        <activity
+            android:name=".Get_Man_Answer"
+            android:finishOnTaskLaunch="false"
+            android:launchMode="singleInstance"
+            android:multiprocess="false"
+            android:noHistory="false" >
+        </activity>
     </application>
 
 </manifest>

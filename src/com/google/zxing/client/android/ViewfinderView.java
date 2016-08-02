@@ -19,7 +19,7 @@ package com.google.zxing.client.android;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 import com.google.zxing.ResultPoint;
 import com.google.zxing.client.android.camera.CameraManager;
 

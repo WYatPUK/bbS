@@ -17,7 +17,7 @@
 package com.google.zxing.client.android.share;
 
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 
 import android.content.Context;
 import android.database.Cursor;

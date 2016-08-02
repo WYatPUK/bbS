@@ -16,7 +16,7 @@
 
 package com.google.zxing.client.android.result;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 import com.google.zxing.client.result.ParsedResult;
 import com.google.zxing.client.result.SMSParsedResult;
 

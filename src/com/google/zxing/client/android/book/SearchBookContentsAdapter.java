@@ -18,7 +18,7 @@ package com.google.zxing.client.android.book;
 
 import java.util.List;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -18,7 +18,7 @@ package com.google.zxing.client.android.history;
 
 import java.util.ArrayList;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 import com.google.zxing.Result;
 
 import android.app.Activity;

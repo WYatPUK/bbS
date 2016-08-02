@@ -24,7 +24,7 @@ import java.util.EnumSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;

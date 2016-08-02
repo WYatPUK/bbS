@@ -19,7 +19,7 @@ package com.google.zxing.client.android;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;

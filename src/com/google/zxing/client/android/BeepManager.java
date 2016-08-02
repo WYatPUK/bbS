@@ -18,7 +18,7 @@ package com.google.zxing.client.android;
 
 import java.io.IOException;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 
 import android.app.Activity;
 import android.content.Context;

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 
 import android.app.ListActivity;
 import android.content.pm.ApplicationInfo;

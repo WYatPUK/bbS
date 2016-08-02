@@ -16,7 +16,7 @@
 
 package com.google.zxing.client.android;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 
 import android.app.Activity;
 import android.content.Intent;

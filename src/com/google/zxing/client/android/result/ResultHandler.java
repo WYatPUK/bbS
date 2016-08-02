@@ -21,7 +21,7 @@ import java.net.URLEncoder;
 import java.util.Collection;
 import java.util.Locale;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 import com.google.zxing.Result;
 import com.google.zxing.client.android.Contents;
 import com.google.zxing.client.android.Intents;

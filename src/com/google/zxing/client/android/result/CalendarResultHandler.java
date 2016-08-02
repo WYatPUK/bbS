@@ -19,7 +19,7 @@ package com.google.zxing.client.android.result;
 import java.text.DateFormat;
 import java.util.Date;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 import com.google.zxing.client.result.CalendarParsedResult;
 import com.google.zxing.client.result.ParsedResult;
 

@@ -18,7 +18,7 @@ package com.google.zxing.client.android.result;
 
 import java.util.Locale;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 import com.google.zxing.client.android.LocaleManager;
 import com.google.zxing.client.result.ParsedResult;
 import com.google.zxing.client.result.URIParsedResult;

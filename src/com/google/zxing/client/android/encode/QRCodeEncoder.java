@@ -26,7 +26,7 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;

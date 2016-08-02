@@ -25,7 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 import com.google.zxing.client.android.HttpHelper;
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.client.android.LocaleManager;

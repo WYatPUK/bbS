@@ -18,7 +18,7 @@ package com.google.zxing.client.android.history;
 
 import java.util.List;
 
-import com.example.wy_black_develop.R;
+import com.example.bbs.R;
 import com.google.zxing.client.android.CaptureActivity;
 import com.google.zxing.client.android.Intents;
 

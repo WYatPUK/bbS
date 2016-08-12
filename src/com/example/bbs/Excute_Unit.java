@@ -10,7 +10,7 @@ public class Excute_Unit {
 	public static final int Type_Link = 2;
 	public static final int Type_Shortcut = 3;
 	public static final int Type_Ask = 4;
-	public static final int Type_Clear = 5;
+	public static final int Type_ClearAll = 5;
 	
 	public String Re_Ask = "";
 	public String Re_Ask_Sub = "";
@@ -45,6 +45,9 @@ public class Excute_Unit {
 		Find_Target = -1;
 		Find_High = -1;
 		Port = "";
+		if (Type == Type_ClearAll) {
+			Send_String = "#" + "ClearAll" + "$";
+		}
 	}
 	//返回true则出错
 	boolean Set_Find_Unit(String Unit_, int mLow, int mTarget, int mHigh) { 
@@ -76,13 +79,6 @@ public class Excute_Unit {
 	boolean Set_Ask_Unit(String mPort) {
 		if (Type==Type_Ask && mPort.length()==1) {
 			Send_String = "#" + "Ask" + "@" + mPort + "$";
-			return false;
-		}
-		return true;
-	}
-	boolean Set_Clear_Unit(String mPort) {
-		if (Type==Type_Clear && mPort.length()==1) {
-			Send_String = "#" + "Clear" + "@" + mPort + "$";
 			return false;
 		}
 		return true;
@@ -132,8 +128,8 @@ public class Excute_Unit {
 			}
 			return Next;
 		}
-		if (Type == Type_Clear) {
-			if (x.equals("Clear_Finished")) {
+		if (Type == Type_ClearAll) {
+			if (x.equals("ClearAll_Finished")) {
 				return Next;
 			}
 			//其他不管是端口不存在还是无设备，都不用管
@@ -173,7 +169,7 @@ public class Excute_Unit {
 		if (Type == Type_Link) {
 			return Send_String;
 		}
-		if (Type == Type_Clear) {
+		if (Type == Type_ClearAll) {
 			return Send_String;
 		}
 		return "";

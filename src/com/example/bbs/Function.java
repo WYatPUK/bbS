@@ -176,6 +176,7 @@ public class Function {
 		return A;
 	}
 	public static Excute_Unit Get_Unit_Find_And_Link2(String x){
+
 		String x1 = x.substring("Find(".length());
 		String Find_P1_Str = x1.substring(0,x1.indexOf(','));
 		String x2 = x1.substring(x1.indexOf(',')+1);
@@ -197,4 +198,59 @@ public class Function {
 		}
 		return A;
 	}
+	public static long Wy_string_to_long (String source){
+		long source_long = 0;
+		for (int i=0; i<source.length() && source.charAt(i)!='\0'; i++){
+			source_long *= 10;
+			source_long += Wy_char_to_int(source.charAt(i));
+		}
+		return source_long;
+	}
+	public static char Wy_int_to_hex (int x){
+		if (x>=0 && x<10){
+			return (char) ('0' + x);
+		}
+		else if (x>9 && x<16){
+			return (char) ('a' + x - 10);
+		}
+		else return (char) 0;
+	}
+	public static int Wy_char_to_int(char x){
+		if (x-'0' >=0 && x-'0'<10){
+			return x-'0';
+		}
+		else if (x-'a' >= 0 && x-'a'<6){
+			return x-'a'+10;
+		}
+		else return 0;
+	}
+	public static String Wy_int_to_sting (int r){
+		String a = "";
+		String b = "%";
+		a += b.replace('%', Wy_int_to_hex((r>>12) & 0x0f));
+		a += b.replace('%', Wy_int_to_hex((r>>8) & 0x0f));
+		a += b.replace('%', Wy_int_to_hex((r>>4) & 0x0f));
+		a += b.replace('%', Wy_int_to_hex(r & 0x0f));
+		return a;
+	}
+	public static String Wy_normal_to_special_basic_4_char(long source){
+		int r = 0, j;
+		for (j=0; source>1000; ++j)
+		{
+			source /= 2;
+		}
+		for (int i=9; i>-1; --i)
+		{
+			r = r << 1;
+			r += ((source>>i)&1);
+		}
+		for (int i=5; i>-1; --i)
+		{
+			r = r << 1;
+			r += ((j>>i)&1);
+		}
+		String a = Function.Wy_int_to_sting(r);
+		return a;
+	}
+	
 }

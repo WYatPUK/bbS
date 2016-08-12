@@ -11,12 +11,18 @@ public class Excute_Unit {
 	public static final int Type_Shortcut = 3;
 	public static final int Type_Ask = 4;
 	public static final int Type_ClearAll = 5;
+	public static final int Type_Power = 6;
+	public static final int Type_Board = 7;
+	public static final int Type_Reset = 8;
 	
 	public String Re_Ask = "";
 	public String Re_Ask_Sub = "";
 	public String Re_Find0 = "";
 	public String Re_Find1 = "";
 	public String Re_Link = "";
+	public String Re_ClearAll = "";
+	public String Re_Power = "";
+	public String Re_Board = "";
 	
 	private int Type;
 	private String Link;
@@ -90,6 +96,14 @@ public class Excute_Unit {
 		}
 		return true;
 	}
+	public boolean Set_Power(int Power) {
+		Send_String = "#" + "Power:" + Function.Wy_int_to_sting(Power) + "$";
+		return false;
+	}
+	public boolean Set_Board(int Board) {
+		Send_String = "#" + "Board:" + Function.Wy_int_to_sting(Board) + "$";
+		return false;
+	}
 	
 	static public final int Wrong = 0;
 	static public final int Stay = 1;
@@ -123,20 +137,30 @@ public class Excute_Unit {
 			}
 		}
 		if (Type == Type_Link){
-			if (! x.equals("Link_Finished")){
-				return Wrong;
+			Re_Link = x;
+			if (x.equals("Link_Finished")){
+				return Next;
 			}
-			return Next;
 		}
 		if (Type == Type_ClearAll) {
+			Re_ClearAll = x;
 			if (x.equals("ClearAll_Finished")) {
 				return Next;
 			}
 			//其他不管是端口不存在还是无设备，都不用管
-			if (x.equals("GoStart_Wrong") || x.equals("Port_Not_Exist")) {
+			//剩下的是不被允许的回答
+		}
+		if (Type == Type_Power) {
+			Re_Power = x;
+			if (x.equals("Power_Set")) {
 				return Next;
 			}
-			//剩下的是不被允许的回答
+		}
+		if (Type == Type_Board) {
+			Re_Board = x;
+			if (x.equals("Board_Set")) {
+				return Next;
+			}
 		}
 		return Wrong;
 	}
@@ -172,6 +196,12 @@ public class Excute_Unit {
 		if (Type == Type_ClearAll) {
 			return Send_String;
 		}
+		if (Type == Type_Power) {
+			return Send_String;
+		}
+		if (Type == Type_Board) {
+			return Send_String;
+		}
 		return "";
 	}
 	
@@ -191,6 +221,18 @@ public class Excute_Unit {
 			AmoComActivity.Show("Port is:" + Port);
 			AmoComActivity.Show(Send_String);
 			AmoComActivity.Show(Re_Link);
+		}
+		else if (Type == Type_Power) {
+			AmoComActivity.Show(Send_String);
+			AmoComActivity.Show(Re_Power);
+		}
+		else if (Type == Type_Board) {
+			AmoComActivity.Show(Send_String);
+			AmoComActivity.Show(Re_Board);
+		}
+		else if (Type == Type_ClearAll) {
+			AmoComActivity.Show(Send_String);
+			AmoComActivity.Show(Re_ClearAll);
 		}
 	}
 }

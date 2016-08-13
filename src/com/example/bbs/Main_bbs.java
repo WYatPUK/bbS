@@ -46,6 +46,7 @@ public class Main_bbs extends Activity implements View.OnClickListener {
 			if (resultCode == RESULT_OK) {
 				String result = data.getStringExtra("scan_result");
 				Intent intent = new Intent (this, Show.class);
+				intent.putExtra("Code", result);
 				startActivity(intent);
 			} else if (resultCode == RESULT_CANCELED) {
 			}

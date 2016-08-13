@@ -1,5 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -8,9 +8,109 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.bbs.Show" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/Main_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="20dp" />
+        <RelativeLayout
+	    	android:layout_width="350dp"
+	    	android:layout_height="263dp"
+	    	android:layout_below="@+id/Text"
+	    	android:layout_centerHorizontal="true"
+	    	android:layout_marginTop="16dp"
+	    	android:gravity="top" >
+	    
+	   		<ImageView
+       		 	android:id="@+id/image1"
+    	    	android:layout_width="match_parent"
+    	    	android:layout_height="wrap_content" />
+    	
+    		<ImageView
+    	    	android:id="@+id/image2"
+    	    	android:layout_width="match_parent"
+    	    	android:layout_height="wrap_content" />
+    	
+   			<ImageView
+    	    	android:id="@+id/image3"
+    	    	android:layout_width="match_parent"
+    	    	android:layout_height="wrap_content" />
+    	
+    		<ImageView
+    	    	android:id="@+id/image4"
+    	    	android:layout_width="match_parent"
+    	    	android:layout_height="wrap_content" />
+    	
+    		<ImageView
+    	    	android:id="@+id/image5"
+    	    	android:layout_width="match_parent"
+    	    	android:layout_height="wrap_content" />
+    	
+    		<ImageView
+        		android:id="@+id/image6"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:src="@drawable/l1_4" />
+    		
+    		<ImageView
+    		    android:id="@+id/image7"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content" />
+    		
+    		<ImageView
+        		android:id="@+id/image8"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:src="@drawable/l1_2" />
+    		
+    		<ImageView
+        		android:id="@+id/image9"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content" />
+    		
+    		<ImageView
+        		android:id="@+id/imagea"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content" />
+    		
+    		<ImageView
+        		android:id="@+id/imageb"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content" />
+    		
+    		<ImageView
+        		android:id="@+id/imagec"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content" />
+    		
+    		<ImageView
+        		android:id="@+id/imaged"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content" />
+    		
+    		<ImageView
+        		android:id="@+id/imageView"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:src="@drawable/board_null" />
+	    	
+		</RelativeLayout>
+        <TextView
+            android:id="@+id/Main_Info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="10dp" />
+    </LinearLayout>
+    
 
 </RelativeLayout>

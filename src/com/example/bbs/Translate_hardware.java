@@ -48,7 +48,7 @@ public class Translate_hardware {
 		return a;
 	}
 	
-	private static int Char_To_Int(char x){
+	public static int Char_To_Int(char x){
 		if (x-'0' >=0 && x-'0'<10){
 			return x-'0';
 		}

@@ -23,6 +23,12 @@ public class Function {
 				if (Is_Find_And_Link(Cmd_Array[i])){
 					continue;
 				}
+				if (Is_Power(Cmd_Array[i])){
+					continue;
+				}
+				if (Is_Board(Cmd_Array[i])){
+					continue;
+				}
 				//new_kind_of_CMD
 				return false;
 			}
@@ -82,6 +88,35 @@ public class Function {
 		
 		if (x6.indexOf(')') != x6.length()-1) return false;
 		//Show("Is Find_And_Link");
+		return true;
+	}
+	public static boolean Is_Power(String x) {
+		if (! x.startsWith("Power(")) return false;
+		String x1 = x.substring("Power(".length());
+		//接受唯一的参数
+		if (x1.indexOf(')') == -1) return false;
+		if (x1.indexOf(')') != x1.length()-1) return false;
+		String PowerMode = x1.substring(0,x1.indexOf(')'));
+		//判断Mode是否为"Auto","All"中的一种
+		if (PowerMode.equals("Auto")){
+			return true;
+		}
+		else if (PowerMode.equals("All")){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	public static boolean Is_Board(String x) {
+		if (! x.startsWith("Board(")) return false;
+		String x1 = x.substring("Board(".length());
+		//接受唯一的参数
+		if (x1.indexOf(')') == -1) return false;
+		if (x1.indexOf(')') != x1.length()-1) return false;
+		String BoardMode = x1.substring(0,x1.indexOf(')'));
+		//判断Mode是否为2
+		if (BoardMode.length()!=2) return false;
 		return true;
 	}
 	public static boolean isNumeric(String str){  
@@ -195,7 +230,54 @@ public class Function {
 		if (A.Set_Link_Unit(Link_Str)){
 			//Show("Get_Unit_Find_And_Link2 Wrong");
 			Toast.makeText(null, "Get_Unit_Find_And_Link2 Wrong", Toast.LENGTH_LONG).show();
+			//基本不会发生了
 		}
+		return A;
+	}
+	public static Excute_Unit Get_Unit_Power(String x, String[] Got_Port){
+		//if (! x.startsWith("Power(")) return false;
+		String x1 = x.substring("Power(".length());
+		//接受唯一的参数
+		//if (x1.indexOf(')') == -1) return false;
+		//if (x1.indexOf(')') != x1.length()-1) return false;
+		String PowerMode = x1.substring(0,x1.indexOf(')'));
+		//判断Mode是否为"Auto","All"中的一种
+		Excute_Unit A = new Excute_Unit(Excute_Unit.Type_Power);
+		int PowerCmd = 0;
+		if (PowerMode.equals("Auto")){
+			for (int i=0; i<13; i++) {
+				if (!Got_Port[i].equals("None")) {
+					PowerCmd |= (1<<Translate_hardware.Char_To_Int(Got_Port[i].charAt(0)));
+				}
+			}
+			//已经获得了PowerCmd序列，生成Excute_Unit选项
+			A.Set_Power(PowerCmd);
+		}
+		else if (PowerMode.equals("All")){
+			for (int i=0; i<13; i++) {
+				PowerCmd |= (1<<i);
+			}
+			//生成了一个全部开启的命令
+			A.Set_Power(PowerCmd);
+		}
+		else {
+			//并不会发生，之前已经认证
+		}		
+		return A;
+	}
+	public static Excute_Unit Get_Unit_Board(String x) {
+		//if (! x.startsWith("Board(")) return false;
+		String x1 = x.substring("Board(".length());
+		//接受唯一的参数
+		//if (x1.indexOf(')') == -1) return false;
+		//if (x1.indexOf(')') != x1.length()-1) return false;
+		String BoardMode = x1.substring(0,x1.indexOf(')'));
+		//判断Mode是否为2
+		//if (BoardMode.length()!=2) return false;
+		int BoardCmd = 16 * Translate_hardware.Char_To_Int(BoardMode.charAt(0)) +
+				Translate_hardware.Char_To_Int(BoardMode.charAt(1));
+		Excute_Unit A = new Excute_Unit(Excute_Unit.Type_Board);
+		A.Set_Board(BoardCmd);
 		return A;
 	}
 	public static long Wy_string_to_long (String source){
@@ -251,6 +333,24 @@ public class Function {
 		}
 		String a = Function.Wy_int_to_sting(r);
 		return a;
+	}
+	public static String[] Find_Need_Port(String[] A) {	
+		int Num_Of_Cmd = A.length;
+		String[] Need_Port = new String[Num_Of_Cmd];
+		for (int i=0; i<Num_Of_Cmd; i++) {
+			Need_Port[i] = "";
+		}
+		for (int i=0; i<Num_Of_Cmd; i++) { //先解决指定类型的连接
+			if (Is_Find_And_Link(A[i])) {
+				Need_Port[i] = Function.Get_Unit_Find_And_Link1(A[i]).Find_Unit;
+				//Show(Need_Port[i]);
+			}
+			if (Is_Power(A[i]) || Is_Board(A[i])) {
+				Need_Port[i] = "None";
+			}
+			//new_kind_of_CMD
+		}
+		return Need_Port;
 	}
 	
 }

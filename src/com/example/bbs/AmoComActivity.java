@@ -388,18 +388,19 @@ public class AmoComActivity extends Activity implements View.OnClickListener,OnC
 				If_Free[i] = true;
 			}
 			String[] Need_Port = new String[Num_Of_Cmd];
-			Need_Port = Find_Need_Port(Cmd_Array); 
+			Need_Port = Function.Find_Need_Port(Cmd_Array); 
 			String[] Got_Port = new String[Num_Of_Cmd];
 			for (int i=0; i<Num_Of_Cmd; i++){Got_Port[i] = "";}
 			for (int i=0; i<Num_Of_Cmd; i++) {
 				int j=0;
-				for (j=0; j<13; j++) {
+				for (j=0; j<13 && (!Need_Port[i].equals("None")); j++) {
 					if (If_Free[j] && Need_Port[i].equals(Port_Array[j].substring(4))){
 						If_Free[j] = false;
 						Got_Port[i] = Translate_hardware.Int_To_Char(j);
 						break;
 					}
 				}
+				if (Need_Port[i].equals("None")) Got_Port[i] = "None";
 				if (j == 13){
 					Show("Can't Afford");
 					return "few port";
@@ -410,6 +411,7 @@ public class AmoComActivity extends Activity implements View.OnClickListener,OnC
 				if (Got_Port[i].isEmpty()) return "Can't Afford";//只要有没找到端口的命令都会返回
 				//Show(Got_Port[i]);
 			}
+			//已经保证Got_Port里只有None和数字
 			Excute.Clear_Unit();
 			for (int i=0; i<Num_Of_Cmd; i++) {
 				if (Function.Is_Find_And_Link(Cmd_Array[i])){
@@ -422,6 +424,14 @@ public class AmoComActivity extends Activity implements View.OnClickListener,OnC
 					Excute.Append_Unit(A);
 					Excute.Append_Unit(B);
 				}
+				if (Function.Is_Power(Cmd_Array[i])){
+					Excute_Unit A = Function.Get_Unit_Power(Cmd_Array[i], Got_Port);
+					Excute.Append_Unit(A);
+				}
+				if (Function.Is_Board(Cmd_Array[i])){
+					Excute_Unit A = Function.Get_Unit_Board(Cmd_Array[i]);
+					Excute.Append_Unit(A);
+				}
 				//new_kind_of_CMD
 			}
 			//Excute.Show_All_Info();
@@ -432,21 +442,7 @@ public class AmoComActivity extends Activity implements View.OnClickListener,OnC
 			return Return_matchport_Wrong;
 		}
 	}
-	private static String[] Find_Need_Port(String[] A) {	
-		int Num_Of_Cmd = A.length;
-		String[] Need_Port = new String[Num_Of_Cmd];
-		for (int i=0; i<Num_Of_Cmd; i++) {
-			Need_Port[i] = "";
-		}
-		for (int i=0; i<Num_Of_Cmd; i++) { //先解决指定类型的连接
-			if (Function.Is_Find_And_Link(A[i])) {
-				Need_Port[i] = Function.Get_Unit_Find_And_Link1(A[i]).Find_Unit;
-				//Show(Need_Port[i]);
-			}
-			//new_kind_of_CMD
-		}
-		return Need_Port;
-	}
+	
 	
 	
 	public static void cb(final String x) {

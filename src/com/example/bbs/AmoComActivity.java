@@ -45,7 +45,8 @@ public class AmoComActivity extends Activity implements View.OnClickListener,OnC
 	static int Totol_Send_bytes = 0;
 	static int Totol_recv_bytes = 0;
 	static int Totol_recv_bytes_temp = 0;
-	static String SendString = "WyBlack:Find(24,100,100,100)Link(0081)&Find(22,150,235,300)Link(0028)&Find(21,150,200,300)Link(0038)";
+	static String SendString = "WyBlack:Find(21,100,100,100)Link(0037)&Find(21,100,100,100)Link(0036)&Power(Auto)&Board(01)";
+			//"WyBlack:Find(24,100,100,100)Link(0081)&Find(22,150,235,300)Link(0028)&Find(21,150,200,300)Link(0038)";
 	
 	static boolean flag_send_find_between = false;
 	
@@ -453,8 +454,8 @@ public class AmoComActivity extends Activity implements View.OnClickListener,OnC
 		mHandler.post(new Runnable() {
 			@Override
 			public synchronized void run() {
-				scrollView.fullScroll(ScrollView.FOCUS_DOWN);// 滚动到底
 				Text_Recv.append(x + "\n");
+				scrollView.fullScroll(ScrollView.FOCUS_DOWN);// 滚动到底
 			}
 		});
 		//Wy_print(x);

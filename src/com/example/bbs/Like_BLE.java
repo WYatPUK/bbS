@@ -25,7 +25,7 @@ public class Like_BLE {
 		Ask[10] = "Ask@A"; Re_Ask[10] = "Port_Not_Exist";
 		Ask[11] = "Ask@B"; Re_Ask[11] = "Info:111821";
 		Ask[12] = "Ask@C"; Re_Ask[12] = "Port_Not_Exist";
-		If_Use_BLE = false;
+		If_Use_BLE = true;
 	}
 	
 	public void Send_String (final String x, final Activity Ac) {

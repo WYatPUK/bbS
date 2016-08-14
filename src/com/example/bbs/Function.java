@@ -142,8 +142,14 @@ public class Function {
 		return Cmd_Array;
 	}
 	public static void Clear_All_Generate(){
-		Excute_Unit A = new Excute_Unit(Excute_Unit.Type_ClearAll);
+		Excute_Unit A = new Excute_Unit(Excute_Unit.Type_Power);
+		A.Set_Power(0);
 		AmoComActivity.Excute.Append_Unit(A);
+		Excute_Unit B = new Excute_Unit(Excute_Unit.Type_ClearAll);
+		AmoComActivity.Excute.Append_Unit(B);
+		Excute_Unit C = new Excute_Unit(Excute_Unit.Type_Board);
+		C.Set_Board(0);
+		AmoComActivity.Excute.Append_Unit(C);
 	}
 	public static void Ask_All_Generate(){
 
@@ -237,6 +243,7 @@ public class Function {
 	public static Excute_Unit Get_Unit_Power(String x, String[] Got_Port){
 		//if (! x.startsWith("Power(")) return false;
 		String x1 = x.substring("Power(".length());
+		int Num_Of_Cmd = Got_Port.length;
 		//接受唯一的参数
 		//if (x1.indexOf(')') == -1) return false;
 		//if (x1.indexOf(')') != x1.length()-1) return false;
@@ -245,7 +252,7 @@ public class Function {
 		Excute_Unit A = new Excute_Unit(Excute_Unit.Type_Power);
 		int PowerCmd = 0;
 		if (PowerMode.equals("Auto")){
-			for (int i=0; i<13; i++) {
+			for (int i=0; i<Num_Of_Cmd; i++) {
 				if (!Got_Port[i].equals("None")) {
 					PowerCmd |= (1<<Translate_hardware.Char_To_Int(Got_Port[i].charAt(0)));
 				}
